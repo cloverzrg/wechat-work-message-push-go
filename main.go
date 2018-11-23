@@ -19,11 +19,10 @@ var version = "0.1"
 func main() {
 	var router = httprouter.New()
 	router.GET("/", index)
-	router.POST("/push",push)
+	router.POST("/push/",push)
 	addr := config.Host + ":" + strconv.Itoa((config.Port))
 	logger.Infof("listening at %s",addr)
 	log.Fatal(http.ListenAndServe(addr, router))
-	//wechatWork.SendMessage("213")
 
 }
 
