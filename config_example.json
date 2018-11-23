@@ -1,0 +1,11 @@
+{
+  "Host": "127.0.0.1",
+  "Port": 3001,
+  "Token": "123",
+  "WechatWork": {
+    "ReceiverUserId": "123",
+    "Corpid": "123",
+    "Corpsecret": "123-123-123",
+    "Agentid": "123"
+  }
+}
