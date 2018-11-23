@@ -47,6 +47,7 @@ func (e WechatWork)  GetToken() (token string) {
 }
 
 func (e WechatWork)  SendMessage(content string) bool {
+	logger.Infof("push message: %s\n",content)
 	token := e.GetToken()
 	config := e.Config
 	url := fmt.Sprintf("https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token=%s", token)

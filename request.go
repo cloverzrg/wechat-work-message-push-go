@@ -39,13 +39,13 @@ func (e Request) PostJson(url string, jsonStr []byte) []byte {
 	var objmap map[string]*json.RawMessage
 	err = json.Unmarshal(body, &objmap)
 	if err != nil {
-		logger.Infof("PostJson error")
+		logger.Error("PostJson error")
 		os.Exit(0)
 	}
 
 	errcode := string(*objmap["errcode"])
 	if errcode != "0" {
-		fmt.Print("PostJson errmsg:" + string(*objmap["errmsg"]))
+		logger.Errorf("PostJson errmsg:" + string(*objmap["errmsg"]))
 	}
 	return body
 }
