@@ -40,6 +40,6 @@ func init() {
 	config, err = loadConfig(params.configPath)
 	wechatWork = &WechatWork{config, ""}
 	if err != nil {
-		print(err)
+		logger.Error(err)
 	}
 }

@@ -8,11 +8,7 @@ import (
 )
 
 func index(res http.ResponseWriter, req *http.Request, params httprouter.Params) {
-	id := params.ByName("id")
-	ua := req.UserAgent()
-	fmt.Fprint(res, "Hello World!"+"\n")
-	fmt.Fprint(res, id)
-	fmt.Fprint(res, ua)
+	fmt.Fprint(res,"post message to /push/")
 }
 
 type postMessage struct {
@@ -24,7 +20,6 @@ func push(res http.ResponseWriter, req *http.Request, params httprouter.Params) 
 	if header_token != config.Token{
 		str := fmt.Sprintf("Incorrect token: %s",header_token)
 		logger.Warnf(str)
-		fmt.Fprint(res, str)
 		return
 	}
 	decoder := json.NewDecoder(req.Body)

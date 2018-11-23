@@ -3,7 +3,6 @@ package main
 import (
 	"bytes"
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
 	"net/http"
 	"os"
@@ -15,8 +14,7 @@ type Request struct {
 func (e Request) Get(url string) []byte {
 	resp, err := http.Get(url)
 	if err != nil {
-		fmt.Print("err:")
-		fmt.Print(err)
+		logger.Errorf("error: %s",err)
 	}
 	defer resp.Body.Close()
 	body, err := ioutil.ReadAll(resp.Body)
