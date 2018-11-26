@@ -19,12 +19,12 @@ type jsonConfig struct {
 }
 
 func loadConfig(path string) (config *jsonConfig, err error) {
+	logger.Infof("reading config from %s", path)
 	file, err := os.Open(path)
 	if err != nil {
 		return nil, err
 	}
 	defer file.Close()
-	logger.Infof("reading config from %s", path)
 	data, err := ioutil.ReadAll(file)
 
 	if err != nil {

@@ -1,0 +1,17 @@
+pipeline:
+  golang build:
+    image: golang:alpine
+    commands:
+    - go env
+    - apk update && apk upgrade && apk add --no-cache git
+    - go get github.com/julienschmidt/httprouter
+    - go get github.com/sirupsen/logrus
+    - go build -o wechat-work-message-push-go
+    - ./wechat-work-message-push-go -v
+
+  docker build image:
+    image: plugins/docker
+    username:
+    password:
+    repo:  cloverzrg/wechat-work-message-push-go
+    tags: latest

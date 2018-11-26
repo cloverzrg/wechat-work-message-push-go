@@ -1,7 +1,6 @@
 package main
 
 import (
-	"encoding/json"
 	"fmt"
 	"github.com/julienschmidt/httprouter"
 	"net/http"
@@ -12,7 +11,7 @@ func index(res http.ResponseWriter, req *http.Request, params httprouter.Params)
 }
 
 type postMessage struct {
-	Message string
+	Message string `json:"message"`
 }
 
 func push(res http.ResponseWriter, req *http.Request, params httprouter.Params) {
@@ -22,13 +21,8 @@ func push(res http.ResponseWriter, req *http.Request, params httprouter.Params) 
 		logger.Warnf(str)
 		return
 	}
-	decoder := json.NewDecoder(req.Body)
-	var m postMessage
-	err := decoder.Decode(&m)
-	if err != nil {
-		panic(err)
-	}
+	message := req.FormValue("message")
 
-	wechatWork.SendMessage(m.Message)
+	wechatWork.SendMessage(message)
 	fmt.Fprint(res, "OK")
 }
