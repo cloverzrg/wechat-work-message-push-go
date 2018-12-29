@@ -5,7 +5,7 @@
 
 https://drone.io/
 
-重命名 config_example.json 为 config.josn 
+重命名 config_example.json 为 config.json 
 
 重命名 .drone-example.yml 为 .drone.yml 
 
