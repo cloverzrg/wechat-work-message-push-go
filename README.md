@@ -1,6 +1,6 @@
 # wechat-work-message-push-go
 [![Build Status](http://drone2.hk.jeongen.com/api/badges/cloverzrg/wechat-work-message-push-go/status.svg)](http://drone2.hk.jeongen.com/cloverzrg/wechat-work-message-push-go)
-
+[![](https://img.shields.io/microbadger/image-size/cloverzrg/wechat-work-message-push-go.svg)](https://hub.docker.com/r/cloverzrg/wechat-work-message-push-go/)
 
 ### 使用：
 1.创建企业号（200人以下不需要认证），获取 `WechatWorkCorpId`
