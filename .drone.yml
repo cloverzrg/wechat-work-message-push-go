@@ -11,8 +11,7 @@ steps:
     commands:
     - go env
     - apk update && apk upgrade && apk add --no-cache git
-    - go get github.com/julienschmidt/httprouter
-    - go get github.com/sirupsen/logrus
+    - go get ./...
     - go build -o wechat-work-message-push-go
     - ./wechat-work-message-push-go -v
 
