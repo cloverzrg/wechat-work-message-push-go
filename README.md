@@ -1,5 +1,5 @@
 # wechat-work-message-push-go
-
+[![Build Status](http://drone2.hk.jeongen.com/api/badges/cloverzrg/wechat-work-message-push-go/status.svg)](http://drone2.hk.jeongen.com/cloverzrg/wechat-work-message-push-go)
 
 
 ### 使用：
