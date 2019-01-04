@@ -7,4 +7,4 @@ ENV DefaultReceiverUserId 13800138000
 ENV WechatWorkCorpId ww741038v8sa88hv36d
 ENV WechatWorkCorpSecret USVdvsa_ad2k34jk232kjn-asfefeawf_waeasdf-ase
 ENV WechatWorkAgentId 1000001
-CMD ["/app/wechat-work-message-push-go","-c","/app/config/config.json"]
+CMD ["/app/wechat-work-message-push-go"]
