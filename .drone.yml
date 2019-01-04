@@ -8,6 +8,9 @@ platform:
 steps:
   - name: go-build
     image: golang:alpine
+    when:
+      branch:
+        - master
     commands:
       - go env
       - apk update && apk upgrade && apk add --no-cache git
