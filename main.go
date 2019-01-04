@@ -19,7 +19,7 @@ func main() {
 	var router = httprouter.New()
 	router.GET("/", index)
 	router.POST("/push/",push)
-	addr := "127.0.0.1:80"
+	addr := "0.0.0.0:80"
 	logger.Infof("listening at %s",addr)
 	log.Fatal(http.ListenAndServe(addr, router))
 
