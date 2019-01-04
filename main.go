@@ -28,7 +28,7 @@ func main() {
 
 func init() {
 	logger.SetFormatter(&logrus.TextFormatter{
-		FullTimestamp: true,
+		FullTimestamp: true, 
 	})
 	params := parseCmdParams()
 	if params.isPrintVersion {
