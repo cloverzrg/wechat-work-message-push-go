@@ -1,0 +1,17 @@
+version: '3.3'
+
+services:
+  wechat-work-message-push-go:
+    image: cloverzrg/wechat-work-message-push-go
+    container_name: wechat-work-message-push-go
+    environment:
+      TZ: Asia/Shanghai
+      Token:
+      DefaultReceiverUserId:
+      WechatWorkCorpId:
+      WechatWorkCorpSecret:
+      WechatWorkAgentId:
+    ports:
+      - 127.0.0.1:60009:80
+    restart: always
+    network_mode: bridge
