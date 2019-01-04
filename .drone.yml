@@ -11,7 +11,7 @@ steps:
     commands:
     - go env
     - apk update && apk upgrade && apk add --no-cache git
-    - go get ./...
+    - go get -d ./...
     - go build -o wechat-work-message-push-go
     - ./wechat-work-message-push-go -v
 
