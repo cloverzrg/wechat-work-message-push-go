@@ -22,7 +22,7 @@ func push(res http.ResponseWriter, req *http.Request, params httprouter.Params) 
 		return
 	}
 	message := req.FormValue("message")
-
-	wechatWork.SendMessage(message)
+	toUser := req.FormValue("to_user")
+	wechatWork.SendMessage(message, toUser)
 	fmt.Fprint(res, "OK")
 }

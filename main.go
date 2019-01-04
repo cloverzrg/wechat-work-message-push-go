@@ -7,7 +7,6 @@ import (
 	"log"
 	"net/http"
 	"os"
-	"strconv"
 )
 
 var logger = logrus.New()
@@ -20,7 +19,7 @@ func main() {
 	var router = httprouter.New()
 	router.GET("/", index)
 	router.POST("/push/",push)
-	addr := config.Host + ":" + strconv.Itoa((config.Port))
+	addr := "127.0.0.1:80"
 	logger.Infof("listening at %s",addr)
 	log.Fatal(http.ListenAndServe(addr, router))
 
@@ -36,7 +35,7 @@ func init() {
 		os.Exit(0)
 	}
 	var err error
-	config, err = loadConfig(params.configPath)
+	config = loadConfig()
 	wechatWork = &WechatWork{config, ""}
 	if err != nil {
 		logger.Error(err)

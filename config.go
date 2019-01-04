@@ -1,38 +1,28 @@
 package main
 
 import (
-	"encoding/json"
-	"io/ioutil"
+	"fmt"
 	"os"
 )
 
 type jsonConfig struct {
-	Host       string
-	Port       int
 	Token      string
 	WechatWork struct {
-		ReceiverUserId string
-		Corpid         string
-		Corpsecret     string
-		Agentid        string
+		DefaultReceiverUserId string
+		CorpId         string
+		CorpSecret     string
+		AgentId        string
 	}
 }
 
-func loadConfig(path string) (config *jsonConfig, err error) {
-	logger.Infof("reading config from %s", path)
-	file, err := os.Open(path)
-	if err != nil {
-		return nil, err
-	}
-	defer file.Close()
-	data, err := ioutil.ReadAll(file)
+func loadConfig() (config *jsonConfig) {
 
-	if err != nil {
-		return nil, err
-	}
 	config = &jsonConfig{}
-	if err = json.Unmarshal(data, config); err != nil {
-		return nil, err
-	}
-	return
+	config.Token = os.Getenv("Token")
+	config.WechatWork.CorpSecret = os.Getenv("WechatWorkCorpSecret")
+	config.WechatWork.CorpId = os.Getenv("WechatWorkCorpId")
+	config.WechatWork.DefaultReceiverUserId = os.Getenv("DefaultReceiverUserId")
+	config.WechatWork.AgentId = os.Getenv("WechatWorkAgentId")
+	fmt.Printf("%+v\n", config)
+	return config
 }

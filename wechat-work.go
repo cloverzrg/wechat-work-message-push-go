@@ -30,7 +30,7 @@ type wechatMessage struct {
 
 func (e WechatWork)  GetToken() (token string) {
 	config := e.Config
-	url := "https://qyapi.weixin.qq.com/cgi-bin/gettoken?" + "corpid=" + config.WechatWork.Corpid + "&corpsecret=" + config.WechatWork.Corpsecret
+	url := "https://qyapi.weixin.qq.com/cgi-bin/gettoken?" + "corpid=" + config.WechatWork.CorpId + "&corpsecret=" + config.WechatWork.CorpSecret
 
 	data := req.Get(url)
 	var objmap map[string]*json.RawMessage
@@ -46,15 +46,20 @@ func (e WechatWork)  GetToken() (token string) {
 	return e.Token
 }
 
-func (e WechatWork)  SendMessage(content string) bool {
+func (e WechatWork)  SendMessage(content string, toUser string) bool {
 	logger.Infof("push message: %s\n",content)
 	token := e.GetToken()
 	config := e.Config
 	url := fmt.Sprintf("https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token=%s", token)
 	m := wechatMessage{}
-	m.Agentid = config.WechatWork.Agentid
+	m.Agentid = config.WechatWork.AgentId
 	m.Msgtype = "text"
-	m.Touser = config.WechatWork.ReceiverUserId
+	if len(toUser)==0 {
+		m.Touser = config.WechatWork.DefaultReceiverUserId
+	}else{
+		m.Touser = toUser
+	}
+
 	m.Text.Content = content
 
 	jsonStr,err := json.Marshal(m)
