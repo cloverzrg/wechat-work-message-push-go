@@ -19,11 +19,10 @@ docker-compose up -d
 5.发送以下请求
 ```shell
 curl -X POST \
-  http://127.0.0.1/push/ \
+  http://127.0.0.1:60009/push/ \
   -H 'Content-Type: application/x-www-form-urlencoded' \
   -H 'token: your_token' \
-  -F message=1234 \
-  -F to_user=XiaoMing
+  -d 'message=1234'
 ```
 
 6.刚才在微信上的关注的微工作台应收到第五步发送的消息
