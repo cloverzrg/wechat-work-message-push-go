@@ -26,6 +26,7 @@ curl -X POST \
 ```
 
 6.刚才在微信上的关注的微工作台应收到第五步发送的消息
+![](https://github.com/cloverzrg/wechat-work-message-push-go/raw/master/IMG_8017.jpg)
 
 ### 开发
 
