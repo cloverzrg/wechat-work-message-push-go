@@ -7,6 +7,7 @@ import (
     "log"
     "net/http"
     "os"
+    "time"
 )
 
 var logger = logrus.New()
@@ -34,6 +35,10 @@ func init() {
         os.Exit(0)
     }
     config = loadConfig()
-    wechatWork = &WechatWork{config, ""}
+    wechatWork = &WechatWork{
+        Config:    config,
+        Token:     "",
+        ExpiredAt: time.Time{},
+    }
 }
 
