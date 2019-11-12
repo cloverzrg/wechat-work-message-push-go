@@ -34,11 +34,7 @@ func init() {
         fmt.Printf("version: %s", version)
         os.Exit(0)
     }
-    var err error
     config = loadConfig()
     wechatWork = &WechatWork{config, ""}
-    if err != nil {
-        logger.Error(err)
-    }
 }
 

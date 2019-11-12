@@ -36,13 +36,14 @@ func (e WechatWork) GetToken() (token string) {
     var objmap map[string]*json.RawMessage
     err := json.Unmarshal(data, &objmap)
     if err != nil {
-        logger.Infof("getToken error")
+        logger.Error("getToken error")
         os.Exit(0)
     }
 
     token = string(*objmap["access_token"])
     token = strings.Replace(token, "\"", "", -1)
     e.Token = token
+    logger.Info("token:", token)
     return e.Token
 }
 
