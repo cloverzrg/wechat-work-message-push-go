@@ -13,7 +13,7 @@ var logger = logrus.New()
 var config *jsonConfig
 var wechatWork *WechatWork
 var req = Request{}
-var version = "0.2"
+var version = "0.3"
 
 func main() {
     var router = httprouter.New()
