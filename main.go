@@ -22,7 +22,6 @@ func main() {
     addr := "0.0.0.0:80"
     logger.Infof("listening at %s", addr)
     log.Fatal(http.ListenAndServe(addr, router))
-
 }
 
 func init() {

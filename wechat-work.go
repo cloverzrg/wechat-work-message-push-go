@@ -5,12 +5,13 @@ import (
     "fmt"
     "os"
     "strings"
+    "time"
 )
 
 type WechatWork struct {
     Config *jsonConfig
     Token  string
-    //TokenExpired int
+    ExpiredAt time.Time
 }
 
 func New(config *jsonConfig) *WechatWork {
@@ -30,6 +31,9 @@ type wechatMessage struct {
 
 func (e WechatWork) GetToken() (token string) {
     config := e.Config
+    if !e.ExpiredAt.IsZero() && time.Now().Before(e.ExpiredAt) {
+        return e.Token
+    }
     url := "https://qyapi.weixin.qq.com/cgi-bin/gettoken?" + "corpid=" + config.WechatWork.CorpId + "&corpsecret=" + config.WechatWork.CorpSecret
 
     data := req.Get(url)
@@ -43,7 +47,8 @@ func (e WechatWork) GetToken() (token string) {
     token = string(*objmap["access_token"])
     token = strings.Replace(token, "\"", "", -1)
     e.Token = token
-    logger.Info("token:", token)
+    logger.Info("new token:", token)
+    e.ExpiredAt = time.Now().Add(1 * time.Hour)
     return e.Token
 }
 
