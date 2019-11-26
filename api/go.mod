@@ -1,4 +1,4 @@
-module wechat-work-message-push-github/api
+module github.com/cloverzrg/wechat-work-message-push-go/api
 
 go 1.13
 
