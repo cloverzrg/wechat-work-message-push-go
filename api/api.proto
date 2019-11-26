@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package api;
+
+service Goods {
+    rpc GetItemBrandAll (GetItemBrandAllRequest) returns (GetItemBrandAllResponse);
+}
+
+message GetItemBrandAllRequest {
+
+}
+
+message GetItemBrandAllResponse {
+
+}
