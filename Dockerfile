@@ -7,4 +7,6 @@ ENV DefaultReceiverUserId 13800138000
 ENV WechatWorkCorpId ww741038v8sa88hv36d
 ENV WechatWorkCorpSecret USVdvsa_ad2k34jk232kjn-asfefeawf_waeasdf-ase
 ENV WechatWorkAgentId 1000001
+ENV GrafanaWebhookUser admin
+ENV GrafanaWebhookPassword admin
 CMD ["/app/wechat-work-message-push-go"]

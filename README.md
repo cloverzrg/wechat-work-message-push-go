@@ -28,6 +28,10 @@ curl -X POST \
 6.刚才在微信上的关注的微工作台应收到第五步发送的消息
 ![](https://github.com/cloverzrg/wechat-work-message-push-go/raw/master/IMG_8017.jpg)
 
+
+7.grafana 报警通知功能
+设置GrafanaWebhookUser和GrafanaWebhookPassword两个环境变量就可以用了
+![](https://github.com/cloverzrg/wechat-work-message-push-go/raw/master/grafana_webhook.jpg)
 ### 开发
 
 #### 使用 drone ^1.0 构建镜像
