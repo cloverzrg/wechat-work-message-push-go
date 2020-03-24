@@ -8,6 +8,9 @@ import (
 )
 
 func SendMessage(content string, toUser string) (err error) {
+	if content == "" {
+		content = "content 为空"
+	}
 	logger.Infof("push message: %s\n", content)
 	token, err := GetToken()
 	if err != nil {
@@ -37,6 +40,15 @@ func SendMessage(content string, toUser string) (err error) {
 }
 
 func SendCardMessage(content string, title string, imageUrl string, toUser string) (err error) {
+	if content == "" {
+		content = "content 为空"
+	}
+	if title == "" {
+		content = "title 为空"
+	}
+	if imageUrl == "" {
+		imageUrl = "https://www.baidu.com/"
+	}
 	logger.Infof("push message: %s\n", content)
 	token, err := GetToken()
 	if err != nil {
@@ -60,6 +72,7 @@ func SendCardMessage(content string, title string, imageUrl string, toUser strin
 	jsonStr, err := json.Marshal(m)
 	if err != nil {
 		logger.Error("sendMessage error:%s", err)
+		SendMessage(err.Error(), "")
 		return err
 	}
 	postJson(url, jsonStr)

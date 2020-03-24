@@ -4,9 +4,9 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
-var logger = logrus.New()
+var Logger = logrus.New()
 
-var Entry = logrus.NewEntry(logger)
+var Entry = logrus.NewEntry(Logger)
 
 var Error = Entry.Error
 var Errorf = Entry.Errorf
@@ -36,7 +36,8 @@ var Fatal = Entry.Fatal
 var Fatalf = Entry.Fatalf
 
 func init() {
-	logger.SetFormatter(&logrus.TextFormatter{
+	Logger.SetFormatter(&logrus.TextFormatter{
 		FullTimestamp: true,
 	})
+	Logger.SetReportCaller(true)
 }
