@@ -26,7 +26,7 @@ func init() {
 	}
 	params := config.ParseCmdParams()
 	if params.IsPrintVersion {
-		fmt.Printf("version: %s", buildInfo)
+		fmt.Printf(buildInfo)
 		os.Exit(0)
 	}
 	err := config.LoadConfig()
