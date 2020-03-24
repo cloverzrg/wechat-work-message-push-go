@@ -1,43 +1,37 @@
 package main
 
 import (
-    "fmt"
-    "github.com/julienschmidt/httprouter"
-    "github.com/sirupsen/logrus"
-    "net/http"
-    "os"
-    "time"
+	"fmt"
+	"github.com/cloverzrg/wechat-work-message-push-go/api"
+	"github.com/cloverzrg/wechat-work-message-push-go/config"
+	"github.com/cloverzrg/wechat-work-message-push-go/logger"
+	"os"
 )
 
-var logger = logrus.New()
-var config *jsonConfig
-var wechatWork *WechatWork
-var req = Request{}
-var version = "0.3"
+var (
+	BuildTime string
+	GoVersion string
+	GitHead   string
+)
 
 func main() {
-	var router = httprouter.New()
-	router.GET("/", index)
-	router.POST("/push/", push)
-	router.POST("/grafana/", GrafaneHandler)
-	addr := "0.0.0.0:80"
-	logger.Infof("listening at %s", addr)
-    logger.Fatal(http.ListenAndServe(addr, router))
+	err := api.Start()
+	logger.Error(err)
 }
 
 func init() {
-	logger.SetFormatter(&logrus.TextFormatter{
-		FullTimestamp: true,
-	})
-	params := parseCmdParams()
-	if params.isPrintVersion {
-		fmt.Printf("version: %s", version)
+	buildInfo := fmt.Sprintf("BuildTime: %s\nGoVersion: %s\nGitHead: %s\n", BuildTime, GoVersion, GitHead)
+	if BuildTime != "" {
+		fmt.Print(buildInfo)
+	}
+	params := config.ParseCmdParams()
+	if params.IsPrintVersion {
+		fmt.Printf("version: %s", buildInfo)
 		os.Exit(0)
 	}
-	config = loadConfig()
-	wechatWork = &WechatWork{
-		Config:    config,
-		Token:     "",
-		ExpiredAt: time.Time{},
+	err := config.LoadConfig()
+	if err != nil {
+		logger.Error(err)
+		return
 	}
 }

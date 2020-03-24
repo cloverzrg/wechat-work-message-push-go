@@ -1,27 +1,15 @@
-package main
+package qyapi
 
 import (
 	"bytes"
 	"encoding/json"
+	"github.com/cloverzrg/wechat-work-message-push-go/logger"
 	"io/ioutil"
 	"net/http"
 	"os"
 )
 
-type Request struct {
-}
-
-func (e Request) Get(url string) []byte {
-	resp, err := http.Get(url)
-	if err != nil {
-		logger.Errorf("error: %s", err)
-	}
-	defer resp.Body.Close()
-	body, err := ioutil.ReadAll(resp.Body)
-	return body
-}
-
-func (e Request) PostJson(url string, jsonStr []byte) []byte {
+func postJson(url string, jsonStr []byte) (body []byte, err error) {
 
 	req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonStr))
 	req.Header.Set("Content-Type", "application/json")
@@ -33,17 +21,17 @@ func (e Request) PostJson(url string, jsonStr []byte) []byte {
 	}
 	defer resp.Body.Close()
 
-	body, _ := ioutil.ReadAll(resp.Body)
+	body, _ = ioutil.ReadAll(resp.Body)
 	var objmap map[string]*json.RawMessage
 	err = json.Unmarshal(body, &objmap)
 	if err != nil {
-		logger.Error("PostJson error")
+		logger.Error("postJson error")
 		os.Exit(0)
 	}
 
 	errcode := string(*objmap["errcode"])
 	if errcode != "0" {
-		logger.Errorf("PostJson errmsg:" + string(*objmap["errmsg"]))
+		logger.Errorf("postJson errmsg:" + string(*objmap["errmsg"]))
 	}
-	return body
+	return body, err
 }

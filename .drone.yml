@@ -15,7 +15,7 @@ steps:
       - go env
       - apk update && apk upgrade && apk add --no-cache git
       - go mod download
-      - go build -o wechat-work-message-push-go
+      - buildflags="-X 'main.BuildTime=`date`' -X 'main.GitHead=`git rev-parse --short HEAD`' -X 'main.GoVersion=$(go version)'" go build -ldflags "$buildflags" -o wechat-work-message-push-go
       - ./wechat-work-message-push-go -v
 
   - name: docker-build
