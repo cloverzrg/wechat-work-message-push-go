@@ -6,7 +6,7 @@ import (
 )
 
 func Start() (err error) {
-	r := gin.New()
+	r := gin.Default()
 	gin.SetMode(gin.DebugMode)
 	r.Use(logger.GinLogger())
 	SetRoute(r)
