@@ -14,7 +14,7 @@
 docker-compose up -d
 ```
 
-4.到 我的企业->微工作台，扫二维码关注企业微信
+4.到 企业微信->我的企业->微信插件，扫二维码关注企业微信 https://work.weixin.qq.com/wework_admin/frame#profile/wxPlugin
 
 5.发送以下请求
 ```shell
@@ -32,6 +32,7 @@ curl -X POST \
 7.grafana 报警通知功能
 设置GrafanaWebhookUser和GrafanaWebhookPassword两个环境变量就可以用了
 ![](https://github.com/cloverzrg/wechat-work-message-push-go/raw/master/grafana_webhook.png)
+
 ### 开发
 
 #### 使用 drone ^1.0 构建镜像
