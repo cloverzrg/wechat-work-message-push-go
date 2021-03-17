@@ -17,14 +17,14 @@ func GrafaneHandler(c *gin.Context) {
 		return
 	}
 	logger.Info("GrafaneHandler: ", string(bytes))
-	noti := grafana.Notification{}
-	err = json.Unmarshal(bytes, &noti)
-	//err = c.BindJSON(&noti)
+	notification := grafana.Notification{}
+	err = json.Unmarshal(bytes, &notification)
+	//err = c.BindJSON(&notification)
 	if err != nil {
 		c.String(500, err.Error())
 		return
 	}
-	err = qyapi.SendCardMessage(noti.Message, noti.Title, noti.ImageUrl, "")
+	err = qyapi.SendCardMessage(notification.Message, notification.Title, notification.ImageUrl, "")
 	if err != nil {
 		c.String(500, err.Error())
 		return
