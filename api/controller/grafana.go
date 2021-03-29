@@ -2,6 +2,7 @@ package controller
 
 import (
 	"encoding/json"
+	"fmt"
 	"github.com/cloverzrg/wechat-work-message-push-go/grafana"
 	"github.com/cloverzrg/wechat-work-message-push-go/logger"
 	"github.com/cloverzrg/wechat-work-message-push-go/qyapi"
@@ -10,7 +11,6 @@ import (
 )
 
 func GrafaneHandler(c *gin.Context) {
-
 	bytes, err := ioutil.ReadAll(c.Request.Body)
 	if err != nil {
 		logger.Error(err)
@@ -24,7 +24,18 @@ func GrafaneHandler(c *gin.Context) {
 		c.String(500, err.Error())
 		return
 	}
-	err = qyapi.SendCardMessage(notification.Message, notification.Title, notification.ImageUrl, "")
+	msg := notification.Title
+	if notification.Message != "" {
+		msg += "\n" + notification.Message
+	}
+	if len(notification.EvalMatches) > 0 {
+		msg += "\nAlert matched metrics:"
+		for _, v := range notification.EvalMatches {
+			msg += fmt.Sprintf("\n%s: %f", v.Metric, v.Value)
+		}
+	}
+	//err = qyapi.SendCardMessage(notification.Message, notification.Title, notification.ImageUrl, "")
+	err = qyapi.SendMessage(msg, "")
 	if err != nil {
 		c.String(500, err.Error())
 		return

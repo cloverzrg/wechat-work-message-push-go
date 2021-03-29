@@ -3,7 +3,7 @@ package grafana
 type Notification struct {
 	DashboardId int `json:"dashboardId"`
 	EvalMatches []struct {
-		Value  int         `json:"value"`
+		Value  float64         `json:"value"`
 		Metric string      `json:"metric"`
 		Tags   interface{} `json:"tags"`
 	} `json:"evalMatches"`
