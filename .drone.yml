@@ -4,13 +4,14 @@ name: default
 platform:
   os: linux
   arch: amd64
+  
+trigger:
+  branch:
+  - master
 
 steps:
   - name: go-build
     image: golang:alpine
-    when:
-      branch:
-        - master
     commands:
       - go env
       - apk update && apk upgrade && apk add --no-cache git
