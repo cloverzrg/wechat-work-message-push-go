@@ -7,6 +7,9 @@ import (
 
 func TokenMiddleware(c *gin.Context) {
 	token := c.GetHeader("token")
+	if token == "" {
+		token = c.Query("token")
+	}
 	if token != config.Config.Token {
 		c.String(401, "token 错误")
 		c.Abort()
