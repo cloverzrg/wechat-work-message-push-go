@@ -9,6 +9,6 @@ import (
 func SetRoute(r *gin.Engine) {
 	r.GET("/", controller.Index)
 	r.POST("/push", middleware.TokenMiddleware, controller.Push)
-	r.GET("/push", middleware.TokenMiddleware, controller.Push)
+	r.GET("/push", middleware.TokenMiddleware, controller.PushInGet)
 	r.POST("/grafana", middleware.BasicAuth(), controller.GrafaneHandler)
 }
