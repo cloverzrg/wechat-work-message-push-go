@@ -33,6 +33,11 @@ curl -X POST \
 设置GrafanaWebhookUser和GrafanaWebhookPassword两个环境变量就可以用了
 ![](https://github.com/cloverzrg/wechat-work-message-push-go/raw/master/grafana_webhook.png)
 
+
+8. 代替Telegram的通知连接  
+比如nezha面板的通知，可以设置为
+GET https://xx/push/push?token=xxx&message=#NEZHA#
+
 ### 开发
 
 #### 使用 drone ^1.0 构建镜像
