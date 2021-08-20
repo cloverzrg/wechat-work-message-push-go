@@ -11,4 +11,7 @@ func SetRoute(r *gin.Engine) {
 	r.POST("/push", middleware.TokenMiddleware, controller.Push)
 	r.GET("/push", middleware.TokenMiddleware, controller.PushInGet)
 	r.POST("/grafana", middleware.BasicAuth(), controller.GrafaneHandler)
+
+	// 兼容server酱接口
+	r.POST("/:token.send", controller.ServerChan)
 }
