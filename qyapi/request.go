@@ -3,6 +3,7 @@ package qyapi
 import (
 	"bytes"
 	"encoding/json"
+	"fmt"
 	"github.com/cloverzrg/wechat-work-message-push-go/logger"
 	"io/ioutil"
 	"net/http"
@@ -22,6 +23,7 @@ func postJson(url string, jsonStr []byte) (body []byte, err error) {
 	defer resp.Body.Close()
 
 	body, _ = ioutil.ReadAll(resp.Body)
+	logger.Infof("post response:%s", body)
 	var objmap map[string]*json.RawMessage
 	err = json.Unmarshal(body, &objmap)
 	if err != nil {
@@ -31,7 +33,9 @@ func postJson(url string, jsonStr []byte) (body []byte, err error) {
 
 	errcode := string(*objmap["errcode"])
 	if errcode != "0" {
-		logger.Errorf("postJson errmsg:" + string(*objmap["errmsg"]))
+		err = fmt.Errorf("postJson errmsg:" + string(*objmap["errmsg"]))
+		logger.Errorf(err.Error())
+		return body, err
 	}
 	return body, err
 }

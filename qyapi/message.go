@@ -35,7 +35,11 @@ func SendMessage(content string, toUser string) (err error) {
 		logger.Error("sendMessage error:%s", err)
 		return err
 	}
-	postJson(url, jsonStr)
+	_, err = postJson(url, jsonStr)
+	if err != nil {
+		logger.Error(err)
+		return err
+	}
 	return err
 }
 
