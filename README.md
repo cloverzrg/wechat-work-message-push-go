@@ -3,7 +3,7 @@
 [![](https://img.shields.io/microbadger/image-size/cloverzrg/wechat-work-message-push-go.svg)](https://hub.docker.com/r/cloverzrg/wechat-work-message-push-go/)
 
 ### 使用：
-1.创建企业号（200人以下不需要认证），获取企业ID `WechatWorkCorpId` [https://work.weixin.qq.com/](https://work.weixin.qq.com/wework_admin/frame#profile)
+1.创建企业号（200人以下不需要认证），获取企业ID `WechatWorkCorpId` [https://work.weixin.qq.com/wework_admin/frame#profile](https://work.weixin.qq.com/wework_admin/frame#profile)
 
 2.创建自建应用，用用管理页面获取 `WechatWorkAgentId` 和 `WechatWorkCorpSecret`
 
