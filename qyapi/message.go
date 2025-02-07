@@ -43,7 +43,7 @@ func SendMessage(content string, toUser string, appName string) (err error) {
 	return err
 }
 
-func SendCardMessage(content string, title string, imageUrl string, toUser string) (err error) {
+func SendCardMessage(content string, title string, imageUrl string, toUser string, appName string) (err error) {
 	if content == "" {
 		content = "content 为空"
 	}
@@ -76,7 +76,7 @@ func SendCardMessage(content string, title string, imageUrl string, toUser strin
 	jsonStr, err := json.Marshal(m)
 	if err != nil {
 		logger.Error("sendMessage error:%s", err)
-		SendMessage(err.Error(), "")
+		SendMessage(fmt.Sprintf("sendMessage error:%s", err), "", appName)
 		return err
 	}
 	postJson(url, jsonStr)
