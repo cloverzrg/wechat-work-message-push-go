@@ -7,11 +7,11 @@ import (
 	"github.com/cloverzrg/wechat-work-message-push-go/logger"
 )
 
-func SendMessage(content string, toUser string) (err error) {
+func SendMessage(content string, toUser string, appName string) (err error) {
 	if content == "" {
 		content = "content 为空"
 	}
-	logger.Infof("push message: %s\n", content)
+	logger.Infof("%s push message: %s\n", appName, content)
 	token, err := GetToken()
 	if err != nil {
 		logger.Error(err)

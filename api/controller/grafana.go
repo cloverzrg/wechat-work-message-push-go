@@ -35,7 +35,7 @@ func GrafaneHandler(c *gin.Context) {
 		}
 	}
 	//err = qyapi.SendCardMessage(notification.Message, notification.Title, notification.ImageUrl, "")
-	err = qyapi.SendMessage(msg, "")
+	err = qyapi.SendMessage(msg, "", "grafana")
 	if err != nil {
 		c.String(500, err.Error())
 		return

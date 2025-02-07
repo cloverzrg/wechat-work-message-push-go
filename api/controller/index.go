@@ -25,7 +25,7 @@ func ServerChan(c *gin.Context) {
 
 	msg := fmt.Sprintf("%s\n%s", text, desp)
 
-	err := qyapi.SendMessage(msg, "")
+	err := qyapi.SendMessage(msg, "", "ServerChan")
 	if err != nil {
 		c.String(500, err.Error())
 		return
