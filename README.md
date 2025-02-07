@@ -10,7 +10,7 @@
 3.到通讯录查看自己的账号，获取 `DefaultReceiverUserId`
 
 3.复制 docker-compose.yaml 到本地，编辑文件，补充以上环境变量和随机字符串token,然后执行
-```$xslt
+```shell
 docker-compose up -d
 ```
 
@@ -40,7 +40,7 @@ GET https://xx/push/push?token=xxx&message=#NEZHA#
 
 ### 开发
 
-#### 使用 drone ^1.0 构建镜像
+#### 使用 drone 构建镜像
 
 https://drone.io/
 
