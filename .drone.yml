@@ -17,6 +17,14 @@ trigger:
   branch:
   - master
 
+volumes:
+  - name: dockersock
+    host:
+      path: /var/run/docker.sock
+  - name: gomodcache
+    host:
+      path: /var/docker/drone-runner/cache/gomod
+
 steps:
 #  - name: go-build
 #    image: golang:alpine
