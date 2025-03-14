@@ -3,7 +3,7 @@
 [![](https://img.shields.io/microbadger/image-size/cloverzrg/wechat-work-message-push-go.svg)](https://hub.docker.com/r/cloverzrg/wechat-work-message-push-go/)
 
 ### 部署
-- 镜像(支持 AMD、ARM)  
+- 镜像(支持 AMD64、ARM)  
   https://hub.docker.com/r/cloverzrg/wechat-work-message-push-go
   
 - docker compose  
