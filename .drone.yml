@@ -59,6 +59,6 @@ steps:
       - docker login --username=cloverzrg -p $password
       - build_node=$(docker buildx create --use)
       - echo 'build node:'$build_node
-      - docker buildx build f Dockerfilev2 --platform linux/arm64,linux/amd64 -t cloverzrg/wechat-work-message-push-go:latest --push .
+      - docker buildx build -f Dockerfilev2 --platform linux/arm64,linux/amd64 -t cloverzrg/wechat-work-message-push-go:latest --push .
       - docker buildx rm $build_node
 
