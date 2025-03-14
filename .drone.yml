@@ -8,7 +8,6 @@ platform:
   os: linux
   arch: arm64
 
-
 node:
   cloud: oracle
   location: tokyo
@@ -26,25 +25,6 @@ volumes:
       path: /var/docker/drone-runner/cache/gomod
 
 steps:
-#  - name: go-build
-#    image: golang:alpine
-#    commands:
-#      - go env
-#      - apk update && apk upgrade && apk add --no-cache git
-#      - go mod download
-#      - buildflags="-X 'main.BuildTime=`date`' -X 'main.GitHead=`git rev-parse --short HEAD`' -X 'main.GoVersion=$(go version)'" && go build -ldflags "$buildflags" -o wechat-work-message-push-go
-#      - ./wechat-work-message-push-go -v
-#
-#  - name: docker-build
-#    image: plugins/docker
-#    settings:
-#      repo:  cloverzrg/wechat-work-message-push-go
-#      tags: latest
-#      username:
-#        from_secret: dockerhub-username
-#      password:
-#        from_secret: dockerhub-password
-
   - name: build-docker
     image: docker:dind
     environment:
@@ -59,6 +39,6 @@ steps:
       - docker login --username=cloverzrg -p $password
       - build_node=$(docker buildx create --use)
       - echo 'build node:'$build_node
-      - docker buildx build -f Dockerfilev2 --platform linux/arm64,linux/amd64 -t cloverzrg/wechat-work-message-push-go:latest --push .
+      - docker buildx build --platform linux/arm64,linux/amd64 -t cloverzrg/wechat-work-message-push-go:latest --push .
       - docker buildx rm $build_node
 
