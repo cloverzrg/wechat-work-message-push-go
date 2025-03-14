@@ -16,7 +16,7 @@ RUN buildflags="-X 'main.BuildTime=`date`' -X 'main.GitHead=`git rev-parse --sho
 
 FROM --platform=$TARGETPLATFORM alpine:latest
 RUN apk update && apk add --no-cache ca-certificates tzdata
-COPY --from=builder /go/wechat-work-message-push-go /app/wechat-work-message-push-go
+COPY --from=builder /go/src/wechat-work-message-push-go/wechat-work-message-push-go /app/wechat-work-message-push-go
 ENV TZ=Asia/Shanghai
 ENV Token my_token
 ENV DefaultReceiverUserId 13800138000
