@@ -12,9 +12,7 @@ ADD . /go/src/wechat-work-message-push-go
 WORKDIR /go/src/wechat-work-message-push-go
 RUN pwd && ls -lah
 RUN apk update && apk add --no-cache git build-base make
-RUN #buildflags="-X 'main.BuildTime=`date`' -X 'main.GitHead=`git rev-parse --short HEAD`' -X 'main.GoVersion=$(go version)'" && go build -trimpath -ldflags "-s -w $buildflags" -o wechat-work-message-push-go
-RUN buildflags="-X main.BuildTime=$(date) -X main.GitHead=$(git rev-parse --short HEAD) -X main.GoVersion=$(go version)" && \
-    go build -trimpath -ldflags "-s -w $buildflags" -o wechat-work-message-push-go
+RUN buildflags="-X 'main.BuildTime=`date`' -X 'main.GitHead=`git rev-parse --short HEAD`' -X 'main.GoVersion=$(go version)'" && go build -trimpath -ldflags "-s -w $buildflags" -o wechat-work-message-push-go
 
 FROM --platform=$TARGETPLATFORM alpine:latest
 RUN apk update && apk add --no-cache ca-certificates tzdata
