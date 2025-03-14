@@ -1,5 +1,3 @@
-version: '3.3'
-
 services:
   wechat-work-message-push-go:
     image: cloverzrg/wechat-work-message-push-go
