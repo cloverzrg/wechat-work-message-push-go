@@ -27,7 +27,7 @@ func GinLogger() gin.HandlerFunc {
 
 		msg := ""
 		if statusCode != 200 {
-			entry.Errorf(msg)
+			entry.Errorf("%s", msg)
 		} else {
 			entry.Info(msg)
 		}

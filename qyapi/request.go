@@ -33,7 +33,7 @@ func postJson(url string, jsonStr []byte) (body []byte, err error) {
 
 	errcode := string(*objmap["errcode"])
 	if errcode != "0" {
-		err = fmt.Errorf("postJson errmsg:" + string(*objmap["errmsg"]))
+		err = fmt.Errorf("postJson errmsg:%s", string(*objmap["errmsg"]))
 		logger.Errorf(err.Error())
 		return body, err
 	}
